@@ -1,7 +1,7 @@
 // https://github.com/NicoHood/HID
 #include "HID-Project.h"
 
-#define VERSION "1.0"
+#define VERSION "1.1"
 #define KEYMAP_LEN 256
 #define KEY_RELEASE_DELAYTIME 70 // キーをリリースするまでの待ち時間(msec)
 #define KEY_SHIFT_ENABLE 0x100 //　シフト入力有
@@ -311,6 +311,7 @@ void loop() {
       digitalWrite(LED_BUILTIN, HIGH);
       // リリースしつつ装飾キーを初期化
       Keyboard.releaseAll();
+      Serial1.write(Serial1.available()); // 残り受信バッファサイズを送信
       pushingModificationKey = 0;
     }
   }
